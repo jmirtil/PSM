@@ -86,13 +86,7 @@ public class appController {
 //       now.set(2008, 3, 15, 13, 29);
 //       date = now.getTime();
 //               
-    	controller();
-       
-    }
-    
-    public static void controller(){
-    	
- 	   appLogin();
+    	appLogin();
         ic.Initiate_MainMenu();
         if(checkClear())
         {
@@ -147,6 +141,7 @@ public class appController {
             
            // db.disconnect();
         }
+       
     }
     
     public static void setupSched(){
@@ -206,6 +201,7 @@ public class appController {
 
 
     }
+    
     public static void appLogin(){
     	while(!loggedin)
         {           
