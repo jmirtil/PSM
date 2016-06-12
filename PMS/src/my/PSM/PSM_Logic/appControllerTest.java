@@ -3,10 +3,16 @@ package my.PSM.PSM_Logic;
 import static org.junit.Assert.*;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class appControllerTest {
-
+	private appController app;
+	
+	@Before
+	public void runBeforeAllTest(){
+		app = new appController();
+	}
 	@Test
 	public void testAppController() {
 		fail("Not yet implemented");
@@ -79,7 +85,6 @@ public class appControllerTest {
 
 	@Test
 	public void testTimerParser() {
-		appController app = new appController();
 		app.timerParser("04:35");
 		Assert.assertTrue(app.returnHr() == 4 && app.returnMin() == 35);
 	}
