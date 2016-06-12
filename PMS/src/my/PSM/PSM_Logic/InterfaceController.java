@@ -27,7 +27,9 @@ class InterfaceController {
     {
         facade = new InterfaceFacade();
     }
-    
+    public void setFacade(InterfaceFacade temp){
+    	facade = temp;
+    }
     public void passwordLock()
     {
         facade.lockedOut();
