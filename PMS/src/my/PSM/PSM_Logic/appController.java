@@ -80,6 +80,17 @@ public class appController {
         hr = min = 0;
     }
     
+    /* Set to the stubs when testing*/
+    public static void setDBConnection(DBConnection temp){
+    	db = temp;
+    }
+    public static void setInterfaceController(InterfaceController temp){
+    	ic = temp;
+    }
+    public static void setAuthenticate(Authenticate temp){
+    	auth = temp;
+    }
+    
     public static void main(String args[])
     {       
 //       Calendar now = new GregorianCalendar();
