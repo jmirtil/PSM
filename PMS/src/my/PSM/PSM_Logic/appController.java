@@ -101,10 +101,10 @@ public class appController {
             long newCurrentTime;
             while(!dataReceived)
             {
-                dataReceived = ic.mm.dataRec();
-                edSchedSel = ic.mm.editSchedSelected();
-                schedSetupSel = ic.mm.InitSetupSelected();
-                logoutSel = ic.mm.logoutSelected();
+                dataReceived = ic.facade.menuDataRec();
+                edSchedSel = ic.facade.editSchedSelected();
+                schedSetupSel = ic.facade.InitSetupSelected();
+                logoutSel = ic.facade.logoutSelected();
                 //System.out.println("Class end time: " +classEnded);
                 //System.out.println("Current time: " +System.currentTimeMillis());
                         
@@ -118,7 +118,7 @@ public class appController {
                 sleep(500);
             }
             newCurrentTime = 0;
-            ic.mm.setdataRec(false);
+            ic.facade.setMenuDataRec(false);
             dataReceived = false;
 
             if(logoutSel)
@@ -145,21 +145,21 @@ public class appController {
     }
     
     public static void setupSched(){
-    	ic.sched.launchInitial();
+    	ic.facade.launchInitial();
         //Initial Schedule Setup
-        while(!ic.sched.dataRec())
+        while(!ic.facade.schedDataRec())
         {
-            dataReceived = ic.sched.dataRec();
+            dataReceived = ic.facade.schedDataRec();
             sleep(300);
         }
         dataReceived = false;
-        ic.sched.setDataRec(false);
+        ic.facade.setSchedDataRec(false);
         
-        db.storeClassInfo(ic.sched.getNewCourseID(), ic.sched.getNewSub(), ic.sched.getNewCourseName(),ic.sched.getNewSemester());
-        db.storeClassSched(ic.sched.getNewCourseID(), ic.sched.getNewCourseStart(), ic.sched.getNewCourseEnd(), 
-                ic.sched.getNewMonStart(), ic.sched.getNewMonEnd(), ic.sched.getNewTueStart(), ic.sched.getNewTueEnd(), 
-                ic.sched.getNewWedStart(), ic.sched.getNewWedEnd(), ic.sched.getNewThuStart(), ic.sched.getNewThuEnd(), 
-                ic.sched.getNewFriStart(), ic.sched.getNewFriEnd(), ic.sched.getNewSatStart(), ic.sched.getNewSatEnd());
+        db.storeClassInfo(ic.facade.getNewCourseID(), ic.facade.getNewSub(), ic.facade.getNewCourseName(),ic.facade.getNewSemester());
+        db.storeClassSched(ic.facade.getNewCourseID(), ic.facade.getNewCourseStart(), ic.facade.getNewCourseEnd(), 
+                ic.facade.getNewMonStart(), ic.facade.getNewMonEnd(), ic.facade.getNewTueStart(), ic.facade.getNewTueEnd(), 
+                ic.facade.getNewWedStart(), ic.facade.getNewWedEnd(), ic.facade.getNewThuStart(), ic.facade.getNewThuEnd(), 
+                ic.facade.getNewFriStart(), ic.facade.getNewFriEnd(), ic.facade.getNewSatStart(), ic.facade.getNewSatEnd());
 
     }
     public static void appEditSched(){
@@ -168,15 +168,15 @@ public class appController {
 
         while(!dataReceived)
         {
-            dataReceived = ic.cs.courseSelected();
+            dataReceived = ic.facade.courseSelected();
             sleep(300);
          //   System.out.println("test");
         }
 
-        ic.cs.setCourseSelected(false);
+        ic.facade.setCourseSelected(false);
         dataReceived = false;
 
-        courseSel = ic.cs.getSelection();
+        courseSel = ic.facade.getSelection();
         getData(courseSel);
         
         ic.Pre_Filled_Form(courseSel,defSub,defCourseName,defSemester,defCourseStart,
@@ -185,19 +185,19 @@ public class appController {
         
         while(!dataReceived)
         {
-            dataReceived = ic.edSched.dataRec(); 
+            dataReceived = ic.facade.psDataRec(); 
             sleep(300);
         }
         
         dataReceived = false;
-        ic.edSched.setDataRec(false);
+        ic.facade.setPsDataRec(false);
 
         //System.out.println("Save has been pressed" +ic.edSched.newMonStart);
 
-        db.storeClassSched(ic.edSched.getDefCourseID(), ic.edSched.getNewCourseStart(), ic.edSched.getNewCourseEnd(), 
-                ic.edSched.getNewMonStart(), ic.edSched.getNewMonEnd(), ic.edSched.getNewTueStart(), ic.edSched.getNewTueEnd(), 
-                ic.edSched.getNewWedStart(), ic.edSched.getNewWedEnd(), ic.edSched.getNewThuStart(), ic.edSched.getNewThuEnd(), 
-                ic.edSched.getNewFriStart(), ic.edSched.getNewFriEnd(), ic.edSched.getNewSatStart(), ic.edSched.getNewSatEnd());
+        db.storeClassSched(ic.facade.getDefCourseID(), ic.facade.getpNewCourseStart(), ic.facade.getpNewCourseEnd(), 
+                ic.facade.getpNewMonStart(), ic.facade.getpNewMonEnd(), ic.facade.getpNewTueStart(), ic.facade.getpNewTueEnd(), 
+                ic.facade.getpNewWedStart(), ic.facade.getpNewWedEnd(), ic.facade.getpNewThuStart(), ic.facade.getpNewThuEnd(), 
+                ic.facade.getpNewFriStart(), ic.facade.getpNewFriEnd(), ic.facade.getpNewSatStart(), ic.facade.getpNewSatEnd());
 
 
     }
@@ -209,14 +209,14 @@ public class appController {
             
              do
              {
-                 dataReceived = ic.log.dataReceived();
+                 dataReceived = ic.facade.dataReceived();
                  sleep(300);
                  
              }while(!dataReceived);
-             ic.log.setDataRec(false);
+             ic.facade.setLogDataRec(false);
              dataReceived = false;
-             username = ic.log.getUsername();
-             password = ic.log.getPassword();
+             username = ic.facade.getUsername();
+             password = ic.facade.getPassword();
 
              
              auth = new Authenticate(username,password);
@@ -232,11 +232,11 @@ public class appController {
                  counter++;
                  while(!dataReceived)
                  {
-                     dataReceived = ic.msg.ack;
+                     dataReceived = ic.facade.getAck();
                      System.out.println("in");
                  }
                  dataReceived = false;
-                 ic.msg.ack = false;
+                 ic.facade.setAck(false);
                  
              }
              if(counter >= 3){
@@ -244,7 +244,7 @@ public class appController {
                  ic.passwordLock();
                  while(!dataReceived)
                  {
-                     dataReceived = ic.msg.ack;
+                     dataReceived = ic.facade.getAck();
                      
                  }
                  System.exit(0);
@@ -395,7 +395,7 @@ public class appController {
     {
         public void run()
         {
-            ic.msg.FifteenMinWarning();
+            ic.facade.FifteenMinWarning();
         }
     };
 	
@@ -403,7 +403,7 @@ public class appController {
     {
         public void run()
         {
-            ic.msg.FiveMinWarning();
+            ic.facade.FiveMinWarning();
         }
     };
     
@@ -412,7 +412,7 @@ public class appController {
     {
         public void run()
         {
-            ic.msg.endClassWarning();
+            ic.facade.endClassWarning();
             classEnded = System.currentTimeMillis();
         }
     };

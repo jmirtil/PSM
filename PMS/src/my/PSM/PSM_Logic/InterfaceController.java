@@ -1,5 +1,6 @@
 package my.PSM.PSM_Logic;
 
+import my.PSM.PSM_Interface.InterfaceFacade;
 import my.PSM.PSM_Interface.LogOutConfirm;
 import my.PSM.PSM_Interface.LoginForm;
 import my.PSM.PSM_Interface.MainMenu;
@@ -20,38 +21,30 @@ import my.PSM.PSM_Interface.courseSelect;
 //
 
 class InterfaceController {
-    
-    public Messages msg = new Messages();
-    
-    public LoginForm log = new LoginForm();
-    public ScheduleForm sched = new ScheduleForm();
-    public PrefilledScheduleForm edSched = new PrefilledScheduleForm();
-    public MainMenu mm = new MainMenu();
-    public LogOutConfirm logout = new LogOutConfirm();
-    public courseSelect cs;
+    public InterfaceFacade facade;
     
     public InterfaceController()
     {
-        
+        facade = new InterfaceFacade();
     }
     
     public void passwordLock()
     {
-        msg.lockedOut();
+        facade.lockedOut();
     }
     public void Initiate_Logout() 
     {
         //System.out.print("lame");
         
          //logout.launchLogout();
-         msg.logoutConfirmation();
+         facade.logoutConfirmation();
      
     }
 
     public void Initiate_IncorrectLogin()
     {
         
-        msg.incorrectLogin();
+        facade.incorrectLogin();
         //il.launchForm();
         
     }
@@ -59,7 +52,7 @@ class InterfaceController {
     public void Initiate_Schedule_Form() 
     {
        
-       sched.launchInitial();
+       facade.launchInitial();
     }
 
     public void Pre_Filled_Form(int courseID, String courseSubj, String courseName, String semester,
@@ -70,18 +63,17 @@ class InterfaceController {
 
     
         
-         edSched.launchEdit(courseID, courseSubj, courseName, semester,
+         facade.launchEdit(courseID, courseSubj, courseName, semester,
             startDate, endDate, startMon, endMon, startTue, endTue, 
             startWed, endWed, startThu, endThu, startFri, endFri, startSat, endSat);
     }
     
     public void Course_Select_Form(){
-        cs = new courseSelect();
-        cs.launchCourse();
+        facade.launchCourse();
     }
     public void Initiate_Login_Form() {
 
-        log.launchForm();
+        facade.launchLoginForm();
 
     }
 
@@ -90,7 +82,7 @@ class InterfaceController {
     }
 
     public void Initiate_MainMenu() {
-        mm.launchForm();
+        facade.launchMenu();
 
     }
 }
