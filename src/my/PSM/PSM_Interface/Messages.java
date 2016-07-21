@@ -15,11 +15,11 @@ public class Messages extends javax.swing.JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String m = "";
-	private boolean logout;
-	private boolean incorrectLogin;
-	public boolean ack;
-	private boolean lockedOut;
+	private static String m = "";
+	private static boolean logout;
+	private static boolean incorrectLogin;
+	public static boolean ack;
+	private static boolean lockedOut;
 
 	/** Creates new form Messages */
 	public Messages() {
