@@ -30,6 +30,9 @@ public class Authenticate {
         db = new DataStoreFacade();
         
     }
+    public void setFacade(DataStoreFacade stub){
+    	db = stub;
+    }
     public void setCredentials(String user, String pass){
     	username = user;
     	password = pass;

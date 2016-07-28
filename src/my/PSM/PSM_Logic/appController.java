@@ -36,7 +36,7 @@ public class appController {
     private  Timer timer = new FutureTimer();
     private  Date date = new Date();
     private  Date date2 = new Date();
-    
+    private boolean activeTimer;
     public  String defSub = "";
     public  String defSemester = "";
     public  String defCourseName = "";
@@ -253,7 +253,11 @@ public class appController {
 
     }
     
-    public  void appLogin(){
+    public void setDataReceived(boolean dataReceived) {
+		this.dataReceived = dataReceived;
+	}
+
+	public  void appLogin(){
     	while(!loggedin)
         {           
             ic.Initiate_Login_Form();            
@@ -324,7 +328,7 @@ public class appController {
         return true;
                 
     }
-            
+        
     public  void checkTimes()
     {
         ArrayList<Integer> courseList = dataFacade.getCourses();
@@ -340,6 +344,7 @@ public class appController {
         for(int i = 0; i < courseList.size(); i++)
         {
             boolean isNull = true;
+            activeTimer = false;
             getData(courseList.get(i).intValue());
             Timer newTimer = new FutureTimer();
             
@@ -384,11 +389,14 @@ public class appController {
                 newTimer.schedule(popup15min, fifteenMin);
                 endClass = getEndTime(hr, min);
                 newTimer.schedule(endofclass, endClass);
+                activeTimer = true;
             }
         }   
        
     }
-    
+	public boolean getActiveTimer(){
+		return activeTimer;
+	}
     public  void getData(int course)
     {
         defSub = dataFacade.fetchCourseSubj(course);
@@ -588,4 +596,5 @@ public class appController {
     {
         timer.schedule(dbClear, date2);
     }
+
 }
