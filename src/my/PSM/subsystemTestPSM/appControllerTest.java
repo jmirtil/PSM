@@ -3,9 +3,7 @@ package my.PSM.subsystemTestPSM;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import my.PSM.PSM_Logic.Authenticate;
-import my.PSM.PSM_Logic.InterfaceController;
-import my.PSM.PSM_Logic.appController;
+import my.PSM.PSM_Logic.*;
 
 import org.junit.After;
 import org.junit.Assert;

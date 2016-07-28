@@ -1,8 +1,7 @@
 package my.PSM.subsystemTestPSM;
 
 import static org.junit.Assert.*;
-import my.PSM.PSM_Logic.Authenticate;
-import my.PSM.unitTestPSM.DataStoreFacadeStub;
+import my.PSM.PSM_Logic.*;
 
 import org.junit.After;
 import org.junit.Before;
