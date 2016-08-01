@@ -43,18 +43,9 @@ public class appControllerTest {
 
 	@Test
 	public void testCheckTimes() {
-		dataStub.testHelper(4072, "CEN", "Software Testing", "SummerA",
-				"01/15/16", "04/31/16", null, null, "04:30", "06:15", null,
-				null, "04:30", "06:15", null, null, null, null);
-		dataStub.testHelper(4010, "CEN", "Software Engineering", "SummerA",
-				"01/15/16", "04/28/16", null, null, "04:30", "06:15", null,
-				null, "04:30", "06:15", null, null, null, null);
-		dataStub.testHelper(3530, "CEN", "Software Testing", "SummerA",
-				"01/15/16", "04/31/16", "04:30", "06:30", null, null, "04:30",
-				"06:30", null, null, "04:30", "06:30", null, null);
-		dataStub.testHelper(2210, "CEN", "Software Engineering", "SummerA",
-				"01/15/16", "04/28/16", null, null, "07:30", "09:15", null,
-				null, "07:30", "09:15", null, null, null, null);
+		dataStub.testHelper(5000, "CEN", "Software Testing", "SummerA",
+				"01/15/16", "04/31/16", "04:30", "06:15", "04:30", "06:15", 
+				"04:30", "06:15", "04:30", "06:15", "04:30", "06:15", "04:30", "06:15");
 
 		try {
 			app.checkTimes();
@@ -148,7 +139,7 @@ public class appControllerTest {
 		// --Expect to be logged out when method returns
 		assertEquals(app.getUser(), "user");
 		assertEquals(app.getPass(), "pw");
-		assertEquals(app.getLoggedIn(), false);
+		assertFalse(app.getLoggedIn());
 		assertTrue(app.isLogoutSel());
 	}
 
